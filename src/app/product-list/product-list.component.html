@@ -1,0 +1,190 @@
+
+<p-sidebar #sideBar  showCloseIcon="false" [visible]="true"    >
+  <ng-template pTemplate="header">
+   <img  [src]="imageUrl" [style.width]="pagetrigger.clicked?'60px':'250px'"  style=" margin:auto; " alt="Qapera" />
+  </ng-template>
+
+
+  <button pButton type="button" class="p-button-outlined" (click)="isOpen()" style="border: 0; margin-top:1rem; margin-bottom:1rem;" icon="{{pagetrigger.clicked?'pi pi-angle-double-right':'pi pi-angle-double-left'}}"   ></button>
+
+  <p-panelMenu    [model]="items"  >
+
+  <ng-template    pTemplate="item" let-item>
+      <ng-container    NgIf="item.route; else urlRef">
+
+          <a     [routerLink]="item.route" class="
+              cursor-pointer text-color px-3 py-2">
+
+
+                <span (mouseover)="sidebarHoverState()" [class]="item.icon"></span>
+                <span  [style.display]="pagetrigger.clicked?'none':'inline'" class="ml-2 text-color">{{ item.label }}</span>
+
+
+
+
+
+
+
+
+
+
+
+
+          </a>
+          <span [style.display]="pagetrigger.clicked?'none':'inline'" style="font-size:xx-large;" [class]="item.chev"></span>
+      </ng-container>
+      <ng-template  #urlRef >
+          <a  NgIf="item.url; else noLink" [href]="item.url" class="flex align-items-center
+              cursor-pointer text-color px-3 py-2">
+              <span  [class]="item.icon"></span>
+              <span  class="ml-2">{{ item.label }}</span>
+          </a>
+          <ng-template #noLink>
+              <span class="flex align-items-center cursor-pointer text-color px-3 py-2">
+                  <span   [class]="item.icon"></span>
+                  <span  class="ml-2">{{ item.label }}</span>
+                  <i NgIf="item.items" class="pi pi-angle-down text-primary ml-auto"></i>
+              </span>
+          </ng-template>
+      </ng-template>
+  </ng-template>
+
+</p-panelMenu>
+<hr >
+<ng-template  pTemplate="footer" >
+
+    <img src="assets/img/sss.jpeg" alt="resim" style="border-radius: 9999px; width:60px; height:60px; border:4px solid #00b4d2; margin-right:20px; align-self:center;"/>
+    <div [style.display]="pagetrigger.clicked?'none':'flex'" style=" flex-direction:column; margin-left:30px;  font-size:x-large;">
+        <span class="profile-name ">mahmut</span>
+        <span class="profile-desc" >Chef</span>
+    </div>
+</ng-template>
+
+</p-sidebar>
+
+<p-sidebar [(visible)]="sidebarVisible" styleClass="sidebarRight" position="right">
+
+    <div class="flex flex-col p-10  w-full space-y-10">
+      <div class="flex flex-row justify-between  ">
+       <span class="text-2xl font-bold">Adı</span>
+       <input
+       type="text"
+       pInputText
+       formControlName="text"
+       style="border:1px solid black;"
+        />
+      </div>
+      <div class="flex flex-row justify-between ">
+        <span class="text-2xl font-bold">Sektör</span>
+        <p-dropdown
+    [options]="countries"
+
+    optionLabel="name"
+    [filter]="true"
+    filterBy="name"
+    [showClear]="true"
+    placeholder="Sektör Seçin">
+        <ng-template pTemplate="selectedItem" let-selectedOption>
+            <div class="flex align-items-center gap-5">
+
+                <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <img
+                    src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                    [class]="'flag flag-' + country.code.toLowerCase()"
+                    style="width: 18px" />
+                <div>{{ country.name }}</div>
+            </div>
+        </ng-template>
+</p-dropdown>
+       </div>
+       <div class="flex flex-row justify-between ">
+        <span class="text-2xl font-bold">Kategori</span>
+        <p-dropdown
+    [options]="countries"
+
+    optionLabel="name"
+    [filter]="true"
+    filterBy="name"
+    [showClear]="true"
+    placeholder="Kategori Seçin">
+        <ng-template pTemplate="selectedItem" let-selectedOption>
+            <div class="flex align-items-center gap-5">
+
+                <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+            </div>
+        </ng-template>
+        <ng-template let-country pTemplate="item">
+            <div class="flex align-items-center gap-2">
+                <img
+                    src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                    [class]="'flag flag-' + country.code.toLowerCase()"
+                    style="width: 18px" />
+                <div>{{ country.name }}</div>
+            </div>
+        </ng-template>
+</p-dropdown>
+
+       </div>
+<div class="flex flex-row">
+  <span class="text-2xl font-bold">Hazırlanma Süresi</span>
+  <input
+  type="text"
+  pInputText
+  formControlName="text"
+  style="border:1px solid black; width:250px; margin-left:155px;"
+   />
+   <span class="ml-3 text-2xl self-center">DK</span>
+</div>
+<div class="flex flex-row">
+  <span class="text-2xl font-bold">Pişirme Süresi </span>
+  <input
+  type="text"
+  pInputText
+  formControlName="text"
+  style="border:1px solid black; width:250px; margin-left:200px;"
+   />
+   <span class="ml-3 text-2xl self-center">DK</span>
+</div>
+<div class="flex flex-row justify-between">
+<span class="text-2xl font-bold">Tarif</span>
+<textarea
+    rows="5"
+    cols="30"
+    pInputTextarea
+    class="menu-area"
+    style="border:1px solid black; height:140px; padding:1rem;   border-top:0px;
+    border-right:0px;
+    border-left:0px;
+    border-bottom:4px solid #00b4d2;  "
+    placeholder="Açıklama"
+    >
+</textarea>
+</div>
+<div>
+  <span class="text-2xl font-bold">Resim</span>
+
+
+</div>
+<div>
+  <p-image
+  src="assets\img\cloud.png"
+  alt="Image"
+  width="250" />
+</div>
+    </div>
+
+
+</p-sidebar>
+
+
+
+
+
+
+
+
+

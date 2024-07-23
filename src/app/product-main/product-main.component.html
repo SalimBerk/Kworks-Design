@@ -1,0 +1,278 @@
+<div class="flex flex-col">
+  <div class="space-x-4 mr-0 ml-auto bg-white  ">
+    <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-calendar"></i>Toplantı İste</button>
+     <button class="w-20 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
+     <button class="w-20 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
+
+  </div>
+  <div class="space-x-4 float-right bg-white mt-14 flex flex-col md:flex-row md:justify-between  ">
+    <span class="text-3xl mb-2 font-medium">Yemek Kitabı </span>
+    <div class="space-x-2 ">
+      <button class="w-52 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;">Yemek Kitabı Stokları</button>
+     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;">Yeni Tarif</button>
+     <div class="space-x-2">
+      <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
+     <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
+     </div>
+
+    </div>
+
+  </div>
+
+    <div class="grid grid-cols-1 p-16 lg:grid-cols-4 md:p-0   mt-14 gap-4" >
+      @for (menu of newMenulist; track $index) {
+        <p-card @fadeIn header="{{menu.name}}" subheader="50TL" [style]="{ width: '400px' }"  >
+          <ng-template pTemplate="header" [style]="{ width: '400px' }">
+
+              <img alt="Card" src="{{menu.image}}" />
+              <span style=" border:3px solid #00b4d2; " class="bg-white text-black absolute bottom-3 left-5 p-2 rounded-md ">{{menu.category?.name}}</span>
+
+
+          </ng-template>
+          <div class="card-content flex justify-center
+           items-center">
+            <p-button  (click)="detailPanel(menu.id)" label="Detay..." [text]="true" [raised]="true" severity="secondary" />
+
+          </div>
+
+
+      </p-card>
+      }
+
+
+
+    </div>
+
+
+
+
+
+
+
+</div>
+
+
+  <p-dialog header="Header" [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '75vw'}">
+
+
+    <div  class="flex flex-col md:flex-row md:justify-between gap-10 p-14">
+      <div >
+        <div class="flex flex-col space-y-4">
+          <p-image
+
+          src="{{getImageUrl}}"
+          alt="Image"
+
+
+
+
+          [preview]="false"
+
+
+          />
+          <div  style="background-color: #00b4d2; height:150px;">
+            <div class="flex justify-center items-center p-12 space-x-12">
+              <div>
+                <img src="assets/img/cook-time-fig.svg" class="mb-2 " style="color: white;" />
+                <span class="text-xl text-white">{{prepTime}} DK</span>
+              </div>
+              <div>
+                <img src="assets/img/prep-time-fig.svg" class="mb-2" />
+                <span class="text-xl text-white">{{cookTime}} DK</span>
+              </div>
+              <div>
+                <img src="assets/img/ready-in-fig.svg" class="mb-2 " />
+                <span class="text-xl text-white">2 DK</span>
+              </div>
+            </div>
+
+          </div>
+          <p-card>
+            <p-panel header="ÜRÜN REÇETESİ" [toggleable]="true" >
+              <p>
+                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga et eius error, blanditiis eos perferendis ut! Nisi illo voluptatem atque corrupti mollitia. Officia sed quaerat dolore, veniam illum atque ipsum!
+              </p>
+          </p-panel>
+
+          </p-card>
+
+        </div>
+
+
+
+      </div>
+
+      <p-card header="Ürün Başlığı">
+        <p class="m-0">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Enim eaque obcaecati expedita recusandae ducimus, ratione similique eligendi ipsum, quo placeat deleniti fuga architecto quis voluptatem!
+        </p>
+        <p-stepper >
+
+
+          <p-stepperPanel header="Miktar">
+
+              <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
+                  <div class="flex flex-column h-12rem">
+                      <div class="border-2 border-dashed surface-border border-round surface-ground flex justify-center  font-medium">
+                        <p-table @fadeIn [value]="grams"   [tableStyle]="{ 'width': '12rem'}" >
+                          <ng-template pTemplate="header"    >
+                              <tr >
+                                <th>Gramaj Listesi</th>
+
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-gram >
+                              <tr>
+                                <td>{{ gram.name }}</td>
+
+
+                              </tr>
+                          </ng-template>
+                      </p-table>
+                      </div>
+                  </div>
+
+              </ng-template>
+              <ng-template pTemplate="separator">
+
+              </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="Brüt Tutar">
+              <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
+                  <div class="flex flex-column h-12rem">
+                      <div class="border-2 border-dashed surface-border border-round surface-ground  flex justify-center  font-medium">
+                        <p-table @fadeIn [value]="gross"   [tableStyle]="{ 'width': '12rem'}" >
+                          <ng-template pTemplate="header"    >
+                              <tr >
+                                <th>Brüt Tutar Listesi</th>
+
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-gross >
+                              <tr>
+                                <td>{{ gross.grossprice.toFixed(2) }}</td>
+
+
+                              </tr>
+                          </ng-template>
+                      </p-table>
+                      </div>
+                  </div>
+
+              </ng-template>
+          </p-stepperPanel>
+          <p-stepperPanel header="Tutar">
+              <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
+                  <div class="flex flex-column h-12rem">
+                      <div class="border-2 border-dashed surface-border border-round surface-ground  flex justify-center  font-medium">
+                        <p-table @fadeIn [value]="amount"   [tableStyle]="{ 'width': '12rem'}" >
+                          <ng-template pTemplate="header"    >
+                              <tr >
+                                <th>Tutar Listesi</th>
+
+                              </tr>
+                          </ng-template>
+                          <ng-template pTemplate="body" let-amount >
+                              <tr>
+                                <td>{{ amount.amountprice.toFixed(2) }}</td>
+
+
+                              </tr>
+                          </ng-template>
+                      </p-table>
+                      </div>
+                  </div>
+
+              </ng-template>
+          </p-stepperPanel>
+      </p-stepper>
+
+
+          <p-panel header="HAZIRLANIŞI" [toggleable]="true" >
+            <p>
+                Lorem ipsum dolor sit amet...
+            </p>
+        </p-panel>
+
+        <p-panel header="SUNUM ŞEKLİ" [toggleable]="true">
+          <p>
+              Lorem ipsum dolor sit amet...
+          </p>
+      </p-panel>
+
+       <div class="flex flex-col md:flex-row  w-full">
+
+          <p-table [value]="products"   [tableStyle]="{ 'width': '30rem'}" >
+            <ng-template pTemplate="header"    >
+                <tr >
+                  <th>Maliyet</th>
+                  <th>Tavsiye Edilen Satış Fiyatı</th>
+                  <th>Cost %</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product >
+                <tr>
+                  <td>{{ product.maliyet }}</td>
+                  <td>{{ product.tavsiye }}</td>
+                  <td>{{ product.cost }}</td>
+
+                </tr>
+            </ng-template>
+        </p-table>
+
+
+
+       </div>
+
+
+    </p-card>
+    <p-dialog header="Malzeme Bilgisi" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }"
+  >
+  <div class="flex flex-col space-y-10">
+    <div class="flex space-x-4 justify-center items-center">
+      <img class="w-1/2 rounded-md" src={{productDesc}} />
+      <p class="text-center font-bold uppercase  ">{{productTitle}}</p>
+    </div>
+
+      <p-panel>
+        <p-header> Malzeme Açıklaması</p-header>
+        <p>Bu menüde bu üründen bir adet kullanılmıştır.</p>
+      </p-panel>
+
+
+  </div>
+
+
+  </p-dialog>
+
+
+
+    </div>
+
+
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="display=false" label="Ok" styleClass="p-button-text"></p-button>
+    </ng-template>
+</p-dialog>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div>
+
+  </div>
+
+
+
+
+
+
