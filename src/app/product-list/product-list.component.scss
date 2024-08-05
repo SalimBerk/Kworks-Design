@@ -2,13 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 ::ng-deep .p-panelmenu{
+  margin-left:2rem;
   line-height: 60px;
 }
 ::ng-deep .p-panelmenu-content{
   border:0;
 }
 
-
+.menu_one_sidebar{
+  margin-left:2rem;
+}
 
 
 
@@ -38,7 +41,7 @@
 
 }
  .text-blue{
-  color: #00B4D2;
+  color: black;
 }
 
 ::ng-deep .active{
@@ -94,8 +97,8 @@
 
 ::ng-deep .p-sidebar{
   width: 350px;
-  padding: 2rem;
-  transition: width .3s ease-in-out;
+
+
 
 
 }
@@ -116,13 +119,13 @@
 
 
 ::ng-deep .p-sidebar-mask{
-  background-color: white!important;
+  background-color: black!important;
 }
 
 ::ng-deep .p-sidebar-header{
 
   align-self: center;
-  transition: all 2s ease-in-out;
+
 }
 
 ::ng-deep .p-sidebar-content{
@@ -172,7 +175,7 @@
 
 ::ng-deep .p-sidebar-footer{
   display: flex;
-  padding: 3rem;
+  padding: 0;
 
   justify-content: center;
 
@@ -194,6 +197,7 @@
   width: 100%;
   display: flex;
   justify-content: center;
+  align-self: center;
 }
 
 
@@ -236,7 +240,21 @@
   border-right: 0px;
 }
 
+::ng-deep .p-datatable-thead>tr>th{
+  background-color:#00b4d2!important;
+  border:0.5px solid  black!important;
+  color:white!important;
+}
+::ng-deep .p-datatable-tbody>tr>td{
+  background-color:white!important;
+  border:0.5px solid  black!important;
+  color:black!important;
+  font-size: large;
+}
 
+input[type=number] {
+  -moz-appearance: textfield;
+}
 
 // ::ng-deep .p-inputtext{
 //   border:2px solid black;

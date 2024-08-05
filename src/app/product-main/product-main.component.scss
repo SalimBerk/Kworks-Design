@@ -30,14 +30,20 @@
   border-top-left-radius: 30px;
   width: 100%;
   height: 100%;
+  transform: scale(1);
+  transition: all ease-in-out 0.5s;
 
 
 }
 
+.p-datatable-gridlines{
+  width:50rem;
+}
+
 ::ng-deep .p-card-header>img:hover{
   object-fit: contain;
-  transform: scale(1.3);
-  transition: transform .5s ease-in-out;
+  transform: scale(1.4);
+
 }
 
 ::ng-deep .p-card-body{
@@ -152,4 +158,104 @@
 ::ng-deep .p-stepper-panels td {
   text-align: center;
   font-size: large;
+}
+::ng-deep .sidebarRight{
+  width: 60rem;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+  }
+ }
+ .side-content{
+  @media screen and (max-width:768px) {
+    align-items: center;
+  }
+
+ }
+
+::ng-deep  .sidebarRight .p-sidebar-header{
+  align-self: flex-end;
+ }
+
+
+
+::ng-deep .p-sidebar-header{
+  align-self: center;
+}
+
+::ng-deep .p-sidebar-content{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  @media screen and (max-width: 768px) {
+    width: 100%;
+
+
+   }
+}
+
+
+::ng-deep .p-inputtext{
+  width: 80%;
+
+  height: 50px;
+  padding-right:50px;
+
+}
+
+
+::ng-deep  .p-inputwrapper{
+  width:70%;
+  margin-right: 120px;
+
+}
+
+::ng-deep .p-dropdown-items{
+  padding-left: 0px;
+}
+::ng-deep .p-element .p-dropdown-item{
+  width:100%;
+
+
+}
+
+::ng-deep .p-dropdown-filter{
+  width: 100%;
+
+}
+
+::ng-deep  .p-dropdown .p-component .p-inputwrapper .p-dropdown-clearable{
+  border-bottom: 4px solid #00b4d2;
+}
+
+::ng-deep .p-dropdown{
+  border-bottom: 5px solid #00b4d2;
+  border-top: 0px;
+  border-left: 0px;
+  border-right: 0px;
+}
+
+::ng-deep .p-datatable-thead>tr>th{
+  background-color:#00b4d2!important;
+  border:0.5px solid  black!important;
+  color:white!important;
+}
+::ng-deep .p-datatable-tbody>tr>td{
+  background-color:white!important;
+  border:0.5px solid  black!important;
+  color:black!important;
+  font-size: large;
+}
+::ng-deep .p-dialog-content{
+  --convexity: 10;
+  --metal: silver;
+  background-color:#ffff;
+
+}
+::ng-deep .p-autocomplete-items>.p-ripple {
+  width: 220px;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
 }

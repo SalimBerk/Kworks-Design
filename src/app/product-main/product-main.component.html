@@ -9,7 +9,7 @@
     <span class="text-3xl mb-2 font-medium">Yemek Kitabı </span>
     <div class="space-x-2 ">
       <button class="w-52 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;">Yemek Kitabı Stokları</button>
-     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;">Yeni Tarif</button>
+     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;" (click)="onVisibility()">Yeni Tarif</button>
      <div class="space-x-2">
       <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
      <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
@@ -21,17 +21,18 @@
 
     <div class="grid grid-cols-1 p-16 lg:grid-cols-4 md:p-0   mt-14 gap-4" >
       @for (menu of newMenulist; track $index) {
-        <p-card @fadeIn header="{{menu.name}}" subheader="50TL" [style]="{ width: '400px' }"  >
+        <p-card header="{{menu.name}}" subheader="50TL" [style]="{ width: '400px' }"  >
           <ng-template pTemplate="header" [style]="{ width: '400px' }">
 
-              <img alt="Card" src="{{menu.image}}" />
+              <img alt="Card" src="{{menu.image}}"
+              class=" hover:cursor-pointer" (click)="detailPanel(menu.id)" />
               <span style=" border:3px solid #00b4d2; " class="bg-white text-black absolute bottom-3 left-5 p-2 rounded-md ">{{menu.category?.name}}</span>
 
 
           </ng-template>
           <div class="card-content flex justify-center
            items-center">
-            <p-button  (click)="detailPanel(menu.id)" label="Detay..." [text]="true" [raised]="true" severity="secondary" />
+
 
           </div>
 
@@ -52,7 +53,7 @@
 </div>
 
 
-  <p-dialog header="Header" [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '75vw'}">
+  <p-dialog styleClass="metallicss" header="Header" [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '75vw'}">
 
 
     <div  class="flex flex-col md:flex-row md:justify-between gap-10 p-14">
@@ -62,6 +63,9 @@
 
           src="{{getImageUrl}}"
           alt="Image"
+
+
+
 
 
 
@@ -114,7 +118,7 @@
               <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
                   <div class="flex flex-column h-12rem">
                       <div class="border-2 border-dashed surface-border border-round surface-ground flex justify-center  font-medium">
-                        <p-table @fadeIn [value]="grams"   [tableStyle]="{ 'width': '12rem'}" >
+                        <p-table  [value]="grams"   [tableStyle]="{ 'width': '12rem'}" >
                           <ng-template pTemplate="header"    >
                               <tr >
                                 <th>Gramaj Listesi</th>
@@ -141,7 +145,7 @@
               <ng-template pTemplate="content" let-prevCallback="prevCallback" let-nextCallback="nextCallback" let-index="index">
                   <div class="flex flex-column h-12rem">
                       <div class="border-2 border-dashed surface-border border-round surface-ground  flex justify-center  font-medium">
-                        <p-table @fadeIn [value]="gross"   [tableStyle]="{ 'width': '12rem'}" >
+                        <p-table  [value]="gross"   [tableStyle]="{ 'width': '12rem'}" >
                           <ng-template pTemplate="header"    >
                               <tr >
                                 <th>Brüt Tutar Listesi</th>
@@ -165,7 +169,7 @@
               <ng-template pTemplate="content" let-prevCallback="prevCallback" let-index="index">
                   <div class="flex flex-column h-12rem">
                       <div class="border-2 border-dashed surface-border border-round surface-ground  flex justify-center  font-medium">
-                        <p-table @fadeIn [value]="amount"   [tableStyle]="{ 'width': '12rem'}" >
+                        <p-table  [value]="amount"   [tableStyle]="{ 'width': '12rem'}" >
                           <ng-template pTemplate="header"    >
                               <tr >
                                 <th>Tutar Listesi</th>
@@ -270,6 +274,246 @@
   <div>
 
   </div>
+
+  <p-sidebar [(visible)]="sidebarVisible" [baseZIndex]="10000" [modal]="true" styleClass="sidebarRight" position="right">
+
+
+
+    <form [formGroup]="myForm" >
+    <div class="flex flex-col align  w-full space-y-56 md:space-y-10 side-content">
+
+        <p-toast />
+
+
+        <div class="flex flex-col w-full align-items-center md:flex-row">
+          <span class="text-2xl font-bold w-40 h-20">Adı</span>
+          <div style="text-align: center;">
+          <input
+          type="text"
+          pInputText
+          formControlName="name"
+          class="p-0.5"
+          style="border:1px solid black; width:250px; padding: 0.2em; margin-left:155px; border-radius:50px;"
+           />
+
+            <div *ngIf="myForm.get('name')?.invalid && (myForm.get('name')?.dirty || myForm.get('name')?.touched)">
+              <small style="color:red; margin-top:30px;" *ngIf="myForm.controls['name']?.errors?.['required']">name is required.</small>
+              <small style="color:red; margin-top:60px;" *ngIf="myForm.controls['name']?.errors?.['minlength']">minLength error.</small>
+              <small style="color:red; margin-top:90px;" *ngIf="myForm.controls['name']?.errors?.['maxlength']">maxLength error</small>
+
+            </div>
+           </div>
+
+        </div>
+         <div class="flex flex-col w-full align-items-center md:flex-row md:justify-between ">
+          <span class="text-2xl font-bold w-40 h-20">Sektör</span>
+          <p-dropdown
+      [options]="countries"
+      class=" ml-48"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Sektör Seçin">
+          <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-5">
+
+                  <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+              </div>
+          </ng-template>
+          <ng-template let-country pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                  <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                      style="width: 18px" />
+                  <div>{{ country.name }}</div>
+              </div>
+          </ng-template>
+  </p-dropdown>
+         </div>
+         <div class="flex flex-col w-full align-items-center md:flex-row md:justify-between ">
+          <span class="text-2xl font-bold w-40 h-20">Kategori</span>
+          <p-dropdown
+      [options]="countries"
+      class=" ml-48"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Kategori Seçin">
+          <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-5">
+
+                  <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+              </div>
+          </ng-template>
+          <ng-template let-country pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                  <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                      style="width: 18px" />
+                  <div>{{ country.name }}</div>
+              </div>
+          </ng-template>
+  </p-dropdown>
+
+         </div>
+  <div class="flex flex-col w-full align-items-center md:flex-row">
+    <span class="text-2xl font-bold w-40 h-20 whitespace-nowrap">Hazırlanma Süresi</span>
+    <div style="text-align: center;">
+    <input
+    type="number"
+    pInputText
+    formControlName="preparedTime"
+    class="p-0.5"
+    style="border:1px solid black; width:250px;  padding: 0.2em; margin-left:155px; border-radius:50px;"
+     />
+
+     <span class="ml-3 text-2xl self-center">DK</span>
+
+      <div *ngIf="myForm.get('preparedTime')?.invalid && (myForm.get('preparedTime')?.dirty || myForm.get('preparedTime')?.touched)">
+        <small style="color:red; margin-top:30px;" *ngIf="myForm.controls['preparedTime']?.errors?.['required']">preparedTime is required.</small>
+        <small style="color:red; margin-top:30px;" *ngIf="myForm.controls['preparedTime']?.errors?.['maxlength']">maxLength has to be 10 character.</small>
+      </div>
+     </div>
+
+  </div>
+  <div class="flex flex-col w-full align-items-center md:flex-row">
+    <span class="text-2xl font-bold w-40 h-20">Pişirme Süresi</span>
+    <div style="text-align: center;">
+    <input
+    type="number"
+    pInputText
+    formControlName="cookingTime"
+    class="p-0.5"
+    style="border:1px solid black; width:250px; padding: 0.2em; margin-left:155px; border-radius:50px;"
+     />
+
+     <span class="ml-3 text-2xl self-center">DK</span>
+
+      <div *ngIf="myForm.get('cookingTime')?.invalid && (myForm.get('cookingTime')?.dirty || myForm.get('cookingTime')?.touched)">
+        <small style="color:red; margin-top:30px;" *ngIf="myForm.get('cookingTime')?.errors?.['required']">cookingTime is required.</small>
+
+      </div>
+     </div>
+
+  </div>
+
+  <div class="flex flex-col w-full md:flex-row justify-between">
+  <span class="text-2xl font-bold w-40 h-20">Tarif</span>
+  <div style="text-align: center;">
+    <textarea
+    rows="5"
+    cols="30"
+    pInputTextarea
+    formControlName="specification"
+    class="menu-area"
+    style="border:1px solid black; height:140px; width:500px; padding:1rem;   border-top:0px;
+    border-right:0px;
+    border-left:0px;
+    border-bottom:4px solid #00b4d2;  "
+    placeholder="Açıklama"
+    >
+</textarea>
+<div *ngIf="myForm.get('specification')?.invalid && (myForm.get('specification')?.dirty || myForm.get('specification')?.touched)">
+  <small style="color:red; margin-top:30px;" *ngIf="myForm.controls['specification']?.errors?.['required']">specification is required.</small>
+  <small style="color:red; margin-top:60px;" *ngIf="myForm.controls['specification'].errors?.['maxlength']">specification is max length error.</small>
+
+
+</div>
+
+  </div>
+
+
+  </div>
+  <div>
+    <span class="text-2xl font-bold">Resim</span>
+
+
+  </div>
+  <div class="self-center">
+    <p-image
+    src="assets\img\cloud.png"
+    alt="Image"
+    width="250"
+     />
+  </div>
+  <div class="w-full">
+    <p-table
+    [value]="stocks"
+    styleClass="p-datatable-gridlines table-auto"
+    [tableStyle]="{ 'min-width': '50rem' }"
+
+
+    >
+      <ng-template pTemplate="header">
+          <tr>
+              <th>Stok</th>
+              <th>Birim</th>
+              <th>Fiyat</th>
+              <th>Reçete Miktarı</th>
+              <th>Maliyet</th>
+              <th></th>
+          </tr>
+      </ng-template>
+      <ng-template class="grid-cols-5 gap-4" pTemplate="body" let-stocks let-period let-i="rowIndex">
+          <tr >
+
+              <td class=" w-72"><p-autoComplete appendTo="body"
+                [style]="{width: '100%',border:'none', borderBottom: '2px solid #47bfd4'}"
+                 field="name"  [suggestions]="newVariants"
+                (completeMethod)="searchVariant($event)"></p-autoComplete></td>
+              <td >{{ stocks.unit }}</td>
+              <td>{{ stocks.price }}</td>
+                  <td class=" w-10" [pEditableColumn]="stocks.prescription_amount" pEditableColumnField="prescription_amount">
+                <p-cellEditor>
+                    <ng-template pTemplate="input">
+                        <input
+                        id="{{i}}"
+                            pInputText
+                            #inputElement
+                            type="number"
+                            style="width: 100px;"
+                            [(ngModel)]="originalValue"
+                            class="edit-input"
+                            (blur)="onBlur($event)"
+                            (keydown.enter)="onBlur($event)"
+
+
+
+                            required />
+                    </ng-template>
+                    <ng-template pTemplate="output">
+                        {{stocks.prescription_amount.toFixed(3) }}
+                    </ng-template>
+                </p-cellEditor>
+            </td>
+              <td>₺{{stocks.cost.toFixed(2)}}</td>
+              <td ><button (click)="deleteStock()"><i class="pi pi-trash" style="color: red;"></i></button></td>
+          </tr>
+      </ng-template>
+  </p-table>
+  </div>
+  <div class="space-x-4 ml-0 mr-auto bg-white  ">
+    <button (click)="addStock()" class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-plus"></i> Stok Ekle</button>
+     <button  class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;" (click)="onSubmit()">Kaydet</button>
+     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-plus mr-2"></i> Yeni Stok</button>
+
+  </div>
+
+
+
+
+
+    </div>
+  </form>
+
+
+
+
+</p-sidebar>
 
 
 

@@ -6,6 +6,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductListComponent } from "./product-list/product-list.component";
 import { ProductMainComponent } from "./product-main/product-main.component";
 import { PagetriggerService } from './pagetrigger.service';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -16,11 +17,11 @@ import { PagetriggerService } from './pagetrigger.service';
     standalone: true,
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss',
-    imports: [RouterOutlet, ButtonModule, SidebarModule, ProductDetailComponent, ProductListComponent, ProductMainComponent,]
+    imports: [RouterOutlet, ButtonModule, SidebarModule, ProductDetailComponent, ProductListComponent, ProductMainComponent,FormsModule]
 })
 export class AppComponent {
   title = 'AngularTutorialApp';
-  sidebarVisible=false;
+
 
 
   constructor(public pageTrigger:PagetriggerService){

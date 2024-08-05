@@ -1,4 +1,4 @@
-import { Component, ElementRef, ErrorHandler, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, ErrorHandler, EventEmitter, Inject, Input, OnChanges, Output, SimpleChanges, ViewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import {  SidebarModule } from 'primeng/sidebar';
 import { PanelMenuModule } from 'primeng/panelmenu';
@@ -10,6 +10,12 @@ import { InputTextModule } from 'primeng/inputtext';
 import { DropdownModule } from 'primeng/dropdown';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ImageModule } from 'primeng/image';
+import { TableModule } from 'primeng/table';
+import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DOCUMENT } from '@angular/common';
+
+
 
 
 
@@ -17,21 +23,25 @@ import { ImageModule } from 'primeng/image';
 @Component({
   selector: 'app-product-list',
   standalone: true,
-  imports: [ButtonModule,SidebarModule,PanelMenuModule,InputTextModule,DropdownModule,InputTextareaModule,ImageModule],
+  imports: [ButtonModule,SidebarModule,PanelMenuModule,InputTextModule,DropdownModule,InputTextareaModule,ImageModule,TableModule,FormsModule,ReactiveFormsModule],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.scss',
 
 })
 export class ProductListComponent {
 
+
   countries: any[] | undefined;
 
+
   selectedCountry: string | undefined;
-  sidebarVisible: boolean = true;
+
+
   items!: MenuItem[];
    display:boolean=true;
   clicked:boolean=false;
   imageUrl:string="https://qapera.com/wp-content/uploads/2021/05/qapera-logo.png";
+
 
 
 
@@ -102,7 +112,9 @@ export class ProductListComponent {
 
 
 
-  constructor(private router: Router,public pagetrigger:PagetriggerService) {
+
+  constructor(private router: Router,public pagetrigger:PagetriggerService,@Inject(DOCUMENT) private document:Document) {
+
 
 
     this.items = [
@@ -115,9 +127,7 @@ export class ProductListComponent {
           label: 'Emirler',
           icon: 'pi pi-link',
           chev:'pi pi-angle-right',
-          command: () => {
-              this.router.navigate(['/installation']);
-          }
+
       },
       {
           label: 'Edvanter',
@@ -140,57 +150,27 @@ export class ProductListComponent {
         label: 'Üretim',
         icon: 'pi pi-link',
         chev:'pi pi-angle-right',
-        command: () => {
-            this.router.navigate(['/installation']);
-        }
+
       },
-      {
-      label: 'Tedarikçiler',
-      icon: 'pi pi-link',
-      chev:'pi pi-angle-right',
-      command: () => {
-          this.router.navigate(['/installation']);
-      }
-      },
-      {
-    label: 'Raporlar',
-    icon: 'pi pi-link',
-    chev:'pi pi-angle-right',
-    command: () => {
-        this.router.navigate(['/installation']);
-    }
-      },
+
+
       {
         label: 'Emirler',
         icon: 'pi pi-link',
         chev:'pi pi-angle-right',
-        command: () => {
-            this.router.navigate(['/installation']);
-        }
+
     },
-    {
-        label: 'Edvanter',
-        icon: 'pi pi-home',
-        chev:'pi pi-angle-right',
-        items: [
-            {
-                label: 'Angular',
-                icon: 'pi pi-star',
-                url: 'https://angular.io/'
-            },
-            {
-                label: 'Vite.js',
-                icon: 'pi pi-bookmark',
-                url: 'https://vitejs.dev/'
-            }
-        ]
-    },
+
 
   ];
 
   }
 
+
+
   ngOnInit() {
+
+
     let menuList:NodeListOf<HTMLElement>|null=document.querySelectorAll('.p-panelmenu-header-content');
     if(menuList){
       menuList.forEach((menu:HTMLElement)=>{
@@ -202,18 +182,7 @@ export class ProductListComponent {
         })
        })
     }
-    this.countries = [
-      { name: 'Australia', code: 'AU' },
-      { name: 'Brazil', code: 'BR' },
-      { name: 'China', code: 'CN' },
-      { name: 'Egypt', code: 'EG' },
-      { name: 'France', code: 'FR' },
-      { name: 'Germany', code: 'DE' },
-      { name: 'India', code: 'IN' },
-      { name: 'Japan', code: 'JP' },
-      { name: 'Spain', code: 'ES' },
-      { name: 'United States', code: 'US' }
-  ];
+
 
 
 }
