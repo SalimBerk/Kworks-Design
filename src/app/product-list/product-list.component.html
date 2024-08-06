@@ -1,10 +1,10 @@
 
 <p-sidebar #sideBar  showCloseIcon="false" [visible]="true"    >
-  <ng-template pTemplate="header">
-   <img  [src]="imageUrl" [style.width]="pagetrigger.clicked?'60px':'250px'"  style=" margin:auto; " alt="Qapera" />
+  <ng-template pTemplate="header" >
+   <img  [src]="imageUrl" [style.width]="pagetrigger.clicked?'60px':'150px'"  style=" margin:auto; " alt="Qapera" />
   </ng-template>
 <div class="flex flex-col">
-  <button pButton type="button"  class="p-button-outlined menu_one_sidebar" (click)="isOpen()" style="border: 0; margin-top:1rem; margin-bottom:1rem;" icon="{{pagetrigger.clicked?'pi pi-angle-double-right':'pi pi-angle-double-left'}}"   ></button>
+  <button pButton type="button"  class="p-button-outlined menu_one_sidebar text-sm" (click)="isOpen()" style="border: 0; margin-top:1rem; margin-bottom:1rem; height:auto;  width:auto; " icon="{{pagetrigger.clicked?'pi pi-angle-double-right':'pi pi-angle-double-left'}}"   ></button>
 
   <p-panelMenu    [model]="items"  >
 
@@ -12,11 +12,11 @@
       <ng-container    NgIf="item.route; else urlRef">
 
           <a     [routerLink]="item.route" class="
-              cursor-pointer text-color px-3 py-2">
+              cursor-pointer text-color px-2 ">
 
 
-                <span (mouseover)="sidebarHoverState()" [class]="item.icon"></span>
-                <span  [style.display]="pagetrigger.clicked?'none':'inline'" class="ml-2 text-color">{{ item.label }}</span>
+                <span (mouseover)="sidebarHoverState()" [class]="item.icon" class="text-md"></span>
+                <span  [style.display]="pagetrigger.clicked?'none':'inline'" class="ml-2 text-color text-sm">{{ item.label }}</span>
 
 
 
@@ -54,12 +54,12 @@
 </div>
 
 
-<ng-template  pTemplate="footer" >
+<ng-template  pTemplate="footer"  >
 
-    <img src="assets/img/sss.jpeg" alt="resim" style="border-radius: 9999px; width:60px; height:60px; border:4px solid #00b4d2; margin-right:20px; align-self:center;"/>
+    <img src="assets/img/sss.jpeg" alt="resim" style="border-radius: 9999px; width:60px; height:auto; border:4px solid #00b4d2; margin-right:20px; align-self:center;"/>
     <div [style.display]="pagetrigger.clicked?'none':'flex'" style=" flex-direction:column; margin-left:30px;  font-size:x-large;">
-        <span class="profile-name ">mahmut</span>
-        <span class="profile-desc" >Chef</span>
+        <span class="profile-name text-sm ">mahmut</span>
+        <span class="profile-desc text-sm" >Chef</span>
     </div>
 </ng-template>
 

@@ -66,10 +66,13 @@ export class ProductListComponent {
 
     if (chanceSidebar && chanceSidebarContent) {
       if(this.pagetrigger.clicked==true){
-        chanceSidebar.style.width = '90px';
+        chanceSidebar.style.width = '80px';
         chanceSidebar.style.padding='0.5rem';
         this.imageUrl="assets/img/q-logo.png";
         chanceSidebarContent.style.width="1rem";
+        chanceSidebarContent.style.paddingRight="64px";
+        chanceSidebarContent.style.paddingLeft="20px";
+        chanceSidebarContent.style.paddingBottom="20px";
 
         if(menuContent){
           menuContent.style.display="none";
@@ -88,8 +91,8 @@ export class ProductListComponent {
       }
       else{
 
-        chanceSidebar.style.width = '350px';
-
+        chanceSidebar.style.width = '250px';
+        chanceSidebarContent.style.padding="0px";
         this.imageUrl="https://qapera.com/wp-content/uploads/2021/05/qapera-logo.png";
         chanceSidebarContent.style.width="fit-content";
         if(menuContent){
@@ -121,6 +124,7 @@ export class ProductListComponent {
       {
           label: 'DASHBOARD',
           icon: 'pi  pi-palette',
+
 
       },
       {

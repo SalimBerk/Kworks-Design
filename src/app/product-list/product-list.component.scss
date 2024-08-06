@@ -63,7 +63,7 @@
 ::ng-deep .p-panelmenu-header-content>a{
   color: black;
   text-decoration: none;
-  font-size: 1.5rem;
+
   white-space: nowrap;
 
 
@@ -83,7 +83,7 @@
 }
 
 ::ng-deep .pi{
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin-right: 5px;
   align-self: center;
 }
@@ -96,7 +96,7 @@
 }
 
 ::ng-deep .p-sidebar{
-  width: 350px;
+  width: 250px;
 
 
 
@@ -124,13 +124,13 @@
 
 ::ng-deep .p-sidebar-header{
 
-  align-self: center;
+
 
 }
 
 ::ng-deep .p-sidebar-content{
   padding-right: 4rem;
-  width: fit-content;
+
   overflow-x: hidden;
   align-self: baseline;
 
@@ -142,10 +142,10 @@
 
 ::ng-deep .p-sidebar-content{
   padding-right: 4rem;
-  width: fit-content;
+
   overflow-x: hidden;
   overflow-y: auto;
-  align-self: flex-end;
+
   &::-webkit-scrollbar {
     width: 6px;
   }
@@ -175,7 +175,7 @@
 
 ::ng-deep .p-sidebar-footer{
   display: flex;
-  padding: 0;
+  padding: 1rem;
 
   justify-content: center;
 
@@ -185,7 +185,7 @@
 
 
 ::ng-deep .sidebarRight{
-  width: 90rem;
+  width: 57rem!important;
  }
 
 
@@ -241,16 +241,20 @@
 }
 
 ::ng-deep .p-datatable-thead>tr>th{
+  white-space: nowrap;
+  height: 50px!important;
   background-color:#00b4d2!important;
   border:0.5px solid  black!important;
   color:white!important;
+  font-size: 10px;
 }
 ::ng-deep .p-datatable-tbody>tr>td{
   background-color:white!important;
   border:0.5px solid  black!important;
   color:black!important;
-  font-size: large;
+  font-size: 10px;
 }
+
 
 input[type=number] {
   -moz-appearance: textfield;

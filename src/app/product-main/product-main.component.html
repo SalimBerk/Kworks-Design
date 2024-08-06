@@ -1,32 +1,99 @@
-<div class="flex flex-col">
-  <div class="space-x-4 mr-0 ml-auto bg-white  ">
-    <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-calendar"></i>Toplantı İste</button>
-     <button class="w-20 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
-     <button class="w-20 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
+<span class="text-3xl mb-5 md:mb-2 font-medium">Yemek Kitabı </span>
+<div class="flex flex-col  ">
 
-  </div>
-  <div class="space-x-4 float-right bg-white mt-14 flex flex-col md:flex-row md:justify-between  ">
-    <span class="text-3xl mb-2 font-medium">Yemek Kitabı </span>
-    <div class="space-x-2 ">
-      <button class="w-52 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;">Yemek Kitabı Stokları</button>
-     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #607D8B;" (click)="onVisibility()">Yeni Tarif</button>
+  <div class="space-x-4 mr-0 ml-auto bg-white flex flex-col ">
+
+    <div class="flex space-x-2 mb-5 mt-5 justify-center">
+      <button class=" w-40 h-8  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-calendar"></i>Toplantı İste</button>
+     <button class="w-10 h-8  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
+     <button class="w-10 h-8  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
+
+    </div>
+
+     <div class="space-x-2 space-y-4 md:space-y-0 ">
+      <button class="w-52 h-8  whitespace-nowrap text-white text-md " style="background-color: #607D8B;">Yemek Kitabı Stokları</button>
+     <button class="w-40 h-8  whitespace-nowrap text-white text-md " style="background-color: #607D8B;" (click)="onVisibility()">Yeni Tarif</button>
      <div class="space-x-2">
-      <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
-     <button class="w-20 h-16 sm:mt-4  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
+      <button class="w-10 h-8  sm:mt-4  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-bell"></i></button>
+     <button class="w-10 h-8  sm:mt-4  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-question"></i></button>
      </div>
 
     </div>
 
   </div>
+  <div class="space-x-1 block items-center float-right bg-white mt-8 md:flex  md:flex-row md:justify-between  ">
+    <div>
+
+      <div class="flex flex-col w-full md:w-auto items-center space-y-8 md:space-y-0 md:flex-row space-x-2 mt-4">
+        <button class="md:w-10 h-8 p-1 w-40 whitespace-nowrap text-white text-md self-center " style="background-color: #00b4d2;"><i class="pi pi-microsoft small-icon"></i></button>
+        <button class="md:w-10 h-8 p-1 w-40 whitespace-nowrap text-white text-md self-center " style="background-color: #00b4d2;"><i class="pi pi-bars small-icon"></i></button>
+        <input type="text" class="border border-1 ml-5 mr-5 p-1" pInputText formControlName="text" placeholder="Genel Arama" />
+  <p-dropdown
+      [options]="countries"
+      class="small-dropdown"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Kategori Seçin">
+          <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-5">
+
+                  <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+              </div>
+          </ng-template>
+          <ng-template let-country pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                  <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                      style="width: 18px" />
+                  <div>{{ country.name }}</div>
+              </div>
+          </ng-template>
+  </p-dropdown>
+  <p-dropdown
+      [options]="countries"
+      class="small-dropdown"
+      optionLabel="name"
+      [filter]="true"
+      filterBy="name"
+      [showClear]="true"
+      placeholder="Kategori Seçin">
+          <ng-template pTemplate="selectedItem" let-selectedOption>
+              <div class="flex align-items-center gap-5">
+
+                  <div style="margin-left: 35%;">{{ selectedOption.name }}</div>
+              </div>
+          </ng-template>
+          <ng-template let-country pTemplate="item">
+              <div class="flex align-items-center gap-2">
+                  <img
+                      src="https://primefaces.org/cdn/primeng/images/demo/flag/flag_placeholder.png"
+                      [class]="'flag flag-' + country.code.toLowerCase()"
+                      style="width: 18px" />
+                  <div>{{ country.name }}</div>
+              </div>
+          </ng-template>
+  </p-dropdown>
+  <button class="w-32 h-8  p-1 text-center  whitespace-nowrap text-white text-md self-center " style="background-color: #00b4d2;">Ara</button>
+      </div>
+
+    </div>
+
+
+
+
+  </div>
 
     <div class="grid grid-cols-1 p-16 lg:grid-cols-4 md:p-0   mt-14 gap-4" >
       @for (menu of newMenulist; track $index) {
-        <p-card header="{{menu.name}}" subheader="50TL" [style]="{ width: '400px' }"  >
+        <p-card header="{{menu.name}}" subheader="50TL" [style]="{ width: '250px' }"  >
           <ng-template pTemplate="header" [style]="{ width: '400px' }">
 
-              <img alt="Card" src="{{menu.image}}"
-              class=" hover:cursor-pointer" (click)="detailPanel(menu.id)" />
-              <span style=" border:3px solid #00b4d2; " class="bg-white text-black absolute bottom-3 left-5 p-2 rounded-md ">{{menu.category?.name}}</span>
+              <img alt="Card" src="{{menu.image!=null?menu.image:'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'}}"
+              class=" hover:cursor-pointer " (click)="detailPanel(menu.id)" />
+              <span style=" border:3px solid #00b4d2; font-size:10px; " class="bg-white text-black  absolute bottom-3 left-5 p-2 rounded-md ">{{menu.category?.name}}</span>
 
 
           </ng-template>
@@ -53,10 +120,13 @@
 </div>
 
 
-  <p-dialog styleClass="metallicss" header="Header" [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '75vw'}">
+  <p-dialog  header="Header" [modal]="true" [(visible)]="display"   [breakpoints]="{ '1199px': '75vw', '575px': '90vw' }"
+  [style]="{ width: '75vw' }"
+  [draggable]="false"
+  [resizable]="false" [maximizable]="true">
 
 
-    <div  class="flex flex-col md:flex-row md:justify-between gap-10 p-14">
+    <div  class="flex flex-col md:flex-row justify-center gap-10 p-0">
       <div >
         <div class="flex flex-col space-y-4">
           <p-image
@@ -74,25 +144,25 @@
 
 
           />
-          <div  style="background-color: #00b4d2; height:150px;">
-            <div class="flex justify-center items-center p-12 space-x-12">
+          <div  style="background-color: #00b4d2;" class="h-32 w-72 mx-auto whitespace-nowrap">
+            <div class="flex justify-center h-32 items-center p-12 space-x-12">
               <div>
                 <img src="assets/img/cook-time-fig.svg" class="mb-2 " style="color: white;" />
-                <span class="text-xl text-white">{{prepTime}} DK</span>
+                <span class="text-md text-white">{{prepTime}} DK</span>
               </div>
               <div>
                 <img src="assets/img/prep-time-fig.svg" class="mb-2" />
-                <span class="text-xl text-white">{{cookTime}} DK</span>
+                <span class="text-md text-white">{{cookTime}} DK</span>
               </div>
               <div>
                 <img src="assets/img/ready-in-fig.svg" class="mb-2 " />
-                <span class="text-xl text-white">2 DK</span>
+                <span class="text-md text-white">2 DK</span>
               </div>
             </div>
 
           </div>
           <p-card>
-            <p-panel header="ÜRÜN REÇETESİ" [toggleable]="true" >
+            <p-panel  header="ÜRÜN REÇETESİ" [toggleable]="true" >
               <p>
                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga et eius error, blanditiis eos perferendis ut! Nisi illo voluptatem atque corrupti mollitia. Officia sed quaerat dolore, veniam illum atque ipsum!
               </p>
@@ -118,7 +188,7 @@
               <ng-template pTemplate="content" let-nextCallback="nextCallback" let-index="index">
                   <div class="flex flex-column h-12rem">
                       <div class="border-2 border-dashed surface-border border-round surface-ground flex justify-center  font-medium">
-                        <p-table  [value]="grams"   [tableStyle]="{ 'width': '12rem'}" >
+                        <p-table  [value]="grams"   [tableStyle]="{ 'width': '15rem'}" >
                           <ng-template pTemplate="header"    >
                               <tr >
                                 <th>Gramaj Listesi</th>
@@ -206,7 +276,7 @@
 
        <div class="flex flex-col md:flex-row  w-full">
 
-          <p-table [value]="products"   [tableStyle]="{ 'width': '30rem'}" >
+          <p-table [value]="products"   [tableStyle]="{ 'width': '15rem','textAlign':'center'}" >
             <ng-template pTemplate="header"    >
                 <tr >
                   <th>Maliyet</th>
@@ -280,13 +350,13 @@
 
 
     <form [formGroup]="myForm" >
-    <div class="flex flex-col align  w-full space-y-56 md:space-y-10 side-content">
+    <div class="flex flex-col align  w-full space-y-56 ml-52 sm:ml-0  md:space-y-10 side-content">
 
         <p-toast />
 
 
-        <div class="flex flex-col w-full align-items-center md:flex-row">
-          <span class="text-2xl font-bold w-40 h-20">Adı</span>
+        <div class="flex flex-col w-1/2 sm:w-full align-items-center md:flex-row">
+          <span class="text-md font-bold w-40 h-20">Adı</span>
           <div style="text-align: center;">
           <input
           type="text"
@@ -305,8 +375,8 @@
            </div>
 
         </div>
-         <div class="flex flex-col w-full align-items-center md:flex-row md:justify-between ">
-          <span class="text-2xl font-bold w-40 h-20">Sektör</span>
+         <div class="flex flex-col w-1/2 sm:w-full align-items-center md:flex-row md:justify-between ">
+          <span class="text-md font-bold w-40 h-20">Sektör</span>
           <p-dropdown
       [options]="countries"
       class=" ml-48"
@@ -332,8 +402,8 @@
           </ng-template>
   </p-dropdown>
          </div>
-         <div class="flex flex-col w-full align-items-center md:flex-row md:justify-between ">
-          <span class="text-2xl font-bold w-40 h-20">Kategori</span>
+         <div class="flex flex-col w-1/2 sm:w-full align-items-center md:flex-row md:justify-between ">
+          <span class="text-md font-bold w-40 h-20">Kategori</span>
           <p-dropdown
       [options]="countries"
       class=" ml-48"
@@ -360,8 +430,8 @@
   </p-dropdown>
 
          </div>
-  <div class="flex flex-col w-full align-items-center md:flex-row">
-    <span class="text-2xl font-bold w-40 h-20 whitespace-nowrap">Hazırlanma Süresi</span>
+  <div class="flex flex-col w-1/2 sm:w-full align-items-center md:flex-row">
+    <span class="text-md font-bold w-40 h-20 whitespace-nowrap">Hazırlanma Süresi</span>
     <div style="text-align: center;">
     <input
     type="number"
@@ -371,7 +441,7 @@
     style="border:1px solid black; width:250px;  padding: 0.2em; margin-left:155px; border-radius:50px;"
      />
 
-     <span class="ml-3 text-2xl self-center">DK</span>
+     <span class="ml-3 text-md self-center">DK</span>
 
       <div *ngIf="myForm.get('preparedTime')?.invalid && (myForm.get('preparedTime')?.dirty || myForm.get('preparedTime')?.touched)">
         <small style="color:red; margin-top:30px;" *ngIf="myForm.controls['preparedTime']?.errors?.['required']">preparedTime is required.</small>
@@ -380,8 +450,8 @@
      </div>
 
   </div>
-  <div class="flex flex-col w-full align-items-center md:flex-row">
-    <span class="text-2xl font-bold w-40 h-20">Pişirme Süresi</span>
+  <div class="flex flex-col w-1/2 sm:w-full align-items-center md:flex-row">
+    <span class="text-md font-bold w-40 h-20">Pişirme Süresi</span>
     <div style="text-align: center;">
     <input
     type="number"
@@ -391,7 +461,7 @@
     style="border:1px solid black; width:250px; padding: 0.2em; margin-left:155px; border-radius:50px;"
      />
 
-     <span class="ml-3 text-2xl self-center">DK</span>
+     <span class="ml-3 text-md self-center">DK</span>
 
       <div *ngIf="myForm.get('cookingTime')?.invalid && (myForm.get('cookingTime')?.dirty || myForm.get('cookingTime')?.touched)">
         <small style="color:red; margin-top:30px;" *ngIf="myForm.get('cookingTime')?.errors?.['required']">cookingTime is required.</small>
@@ -401,19 +471,20 @@
 
   </div>
 
-  <div class="flex flex-col w-full md:flex-row justify-between">
-  <span class="text-2xl font-bold w-40 h-20">Tarif</span>
+  <div class="flex flex-col w-1/2 sm:w-full md:flex-row justify-between">
+  <span class="text-md font-bold w-40 h-20">Tarif</span>
   <div style="text-align: center;">
     <textarea
     rows="5"
     cols="30"
     pInputTextarea
     formControlName="specification"
-    class="menu-area"
-    style="border:1px solid black; height:140px; width:500px; padding:1rem;   border-top:0px;
+    class="menu-area "
+    style="border:1px solid black; width:500px;  padding:1rem;   border-top:0px;
     border-right:0px;
     border-left:0px;
-    border-bottom:4px solid #00b4d2;  "
+    border-bottom:4px solid #00b4d2;
+    @media (max-width:768px){ width:300px;}  "
     placeholder="Açıklama"
     >
 </textarea>
@@ -429,7 +500,7 @@
 
   </div>
   <div>
-    <span class="text-2xl font-bold">Resim</span>
+    <span class="text-md font-bold">Resim</span>
 
 
   </div>
@@ -437,14 +508,14 @@
     <p-image
     src="assets\img\cloud.png"
     alt="Image"
-    width="250"
+    width="100"
      />
   </div>
   <div class="w-full">
     <p-table
     [value]="stocks"
     styleClass="p-datatable-gridlines table-auto"
-    [tableStyle]="{ 'min-width': '50rem' }"
+    [tableStyle]="{ 'min-width': '10rem' }"
 
 
     >
@@ -462,12 +533,13 @@
           <tr >
 
               <td class=" w-72"><p-autoComplete appendTo="body"
-                [style]="{width: '100%',border:'none', borderBottom: '2px solid #47bfd4'}"
+                [style]="{width: '100%'
+              }"
                  field="name"  [suggestions]="newVariants"
                 (completeMethod)="searchVariant($event)"></p-autoComplete></td>
               <td >{{ stocks.unit }}</td>
               <td>{{ stocks.price }}</td>
-                  <td class=" w-10" [pEditableColumn]="stocks.prescription_amount" pEditableColumnField="prescription_amount">
+                  <td class=" w-10 text-small" [pEditableColumn]="stocks.prescription_amount" pEditableColumnField="prescription_amount">
                 <p-cellEditor>
                     <ng-template pTemplate="input">
                         <input
@@ -496,10 +568,10 @@
       </ng-template>
   </p-table>
   </div>
-  <div class="space-x-4 ml-0 mr-auto bg-white  ">
-    <button (click)="addStock()" class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-plus"></i> Stok Ekle</button>
-     <button  class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;" (click)="onSubmit()">Kaydet</button>
-     <button class="w-40 h-16  whitespace-nowrap text-white text-xl " style="background-color: #00b4d2;"><i class="pi pi-plus mr-2"></i> Yeni Stok</button>
+  <div class="flex flex-col sm:ml-32 sm:flex-row space-x-4 ml-0 mr-auto  bg-white  ">
+    <button (click)="addStock()" class="w-40 h-10 mb-16  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-plus"></i> Stok Ekle</button>
+     <button  class="w-40 h-10 mb-16  whitespace-nowrap text-white text-md " style="background-color: #00b4d2;" (click)="onSubmit()">Kaydet</button>
+     <button class="w-40 h-10 mb-16 whitespace-nowrap text-white text-md " style="background-color: #00b4d2;"><i class="pi pi-plus mr-2"></i> Yeni Stok</button>
 
   </div>
 

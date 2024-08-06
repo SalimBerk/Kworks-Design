@@ -94,6 +94,7 @@ export class ProductMainComponent  implements OnInit {
 
     const inputElement = event.target as HTMLInputElement;
 
+
     let id:number=parseInt(inputElement.id);
     let currentStock=this.stocks[id];
     currentStock.prescription_amount=parseFloat(inputElement.value);
@@ -216,6 +217,7 @@ this.amount=[{
 
   detailPanel(id?:number){
      let getData=this.newMenulist.find((item:any)=>item.id==id);
+
 
 
 
