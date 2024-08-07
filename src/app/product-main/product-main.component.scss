@@ -40,9 +40,11 @@
 
 }
 
-.p-datatable-table{
+::ng-deep.table-responsive{
+  min-width: 10rem;
   @media screen and (max-width:768px) {
-    width: 4rem;
+
+    width: 500px;
   }
 }
 
@@ -178,17 +180,11 @@
   text-align: center;
   font-size: large;
 }
-::ng-deep .sidebarRight{
-  width: 40rem;
-  @media screen and (max-width: 768px) {
-    margin: auto;
-    width: 10rem;
 
-  }
- }
  .side-content{
   @media screen and (max-width:768px) {
     align-items: center;
+    margin: inherit;
   }
 
  }
@@ -206,6 +202,7 @@
 
 ::ng-deep .p-sidebar-content{
   width: 100%;
+  padding: 0px;
   display: flex;
   justify-content: center;
   @media screen and (max-width: 768px) {
@@ -301,7 +298,9 @@
 ::ng-deep .p-autocomplete-items>.p-ripple {
   width: 220px;
 }
+.span-content{
 
+}
 input[type=number] {
   -moz-appearance: textfield;
 }

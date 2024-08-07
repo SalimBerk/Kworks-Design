@@ -184,9 +184,16 @@
 }
 
 
-::ng-deep .sidebarRight{
-  width: 57rem!important;
- }
+
+  ::ng-deep .sidebarRight{
+    width: 57rem;
+    @media screen and (max-width: 768px) {
+      margin: auto;
+      width: 500px;
+
+    }
+   }
+
 
 
 ::ng-deep .p-sidebar-header{
