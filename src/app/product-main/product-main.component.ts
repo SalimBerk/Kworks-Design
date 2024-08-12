@@ -20,6 +20,7 @@ import { MessagesModule } from 'primeng/messages';
 import { Message, MessageService } from 'primeng/api';
 import { AutoCompleteModule } from 'primeng/autocomplete';
 import axios, { Axios } from 'axios';
+
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Transform } from 'stream';
 
@@ -46,7 +47,7 @@ interface amountList{
 @Component({
   selector: 'app-product-main',
   standalone: true,
-  imports: [ButtonModule,CardModule,DialogModule,PanelModule,TableModule,ImageModule,AccordionModule,StepperModule,ListboxModule,ProgressSpinnerModule,SidebarModule,DropdownModule,CommonModule,TagModule,FormsModule,ReactiveFormsModule,MessagesModule,ToastModule,AutoCompleteModule],
+  imports: [ButtonModule,CardModule,DialogModule,PanelModule,TableModule,ImageModule,AccordionModule,StepperModule,ListboxModule,ProgressSpinnerModule,SidebarModule,DropdownModule,CommonModule,TagModule,FormsModule,ReactiveFormsModule,MessagesModule,ToastModule,AutoCompleteModule,ProgressSpinnerModule],
   templateUrl: './product-main.component.html',
   styleUrl: './product-main.component.scss',
 
@@ -54,9 +55,9 @@ interface amountList{
 })
 
 
-export class ProductMainComponent  implements OnInit {
+export class ProductMainComponent  implements OnInit{
 
-
+  loading:boolean;
 
   grams!:gramList[];
   gross!:grossList[];
@@ -78,14 +79,25 @@ export class ProductMainComponent  implements OnInit {
   messages!: Message[];
   newVariants:any[]=[];
 
+  searchTerms:string='';
+  filteredProducts: any[] = [];
+
+
   @ViewChild('inputElement') inputElement!: ElementRef;
 
   products: any[]=[];
   newMenulist:any=[];
 
 
+
+
   onVisibility(){
     this.sidebarVisible=!this.sidebarVisible;
+
+  }
+
+  onInputChange(event:any) {
+    console.log(event);
 
   }
 
@@ -132,6 +144,8 @@ export class ProductMainComponent  implements OnInit {
 
 
   }
+
+
   onSubmit(){
 
     if (this.myForm.valid) {
@@ -143,7 +157,7 @@ export class ProductMainComponent  implements OnInit {
 
   }
 
-  constructor(public pagetrigger:PagetriggerService,private fb:FormBuilder,private messageService: MessageService ){
+  constructor(public pagetrigger:PagetriggerService,private fb:FormBuilder,private messageService: MessageService,private cdr: ChangeDetectorRef ){
 
     this.myForm=this.fb.group({
       name: ['', [Validators.required,Validators.minLength(10),Validators.maxLength(50)]],
@@ -215,6 +229,7 @@ this.amount=[{
 
 
 
+
   detailPanel(id?:number){
      let getData=this.newMenulist.find((item:any)=>item.id==id);
 
@@ -246,8 +261,43 @@ this.amount=[{
   // onVariantSelect(event:Event, i:number): void {
   //   this.cookBook.items[i].cookBookStock = event;
   // }
+
+
+  async asyncListProducts():Promise<void>{
+
+
+
+      this.newMenulist= await this.pagetrigger.getProducts();
+
+
+
+
+  }
+
    async ngOnInit():Promise<void> {
-    this.newMenulist= await this.pagetrigger.getProducts();
+
+
+    this.pagetrigger.isLoading$.subscribe(
+      (loading) => {
+        this.loading = loading;
+        if(loading!=true){
+
+            this.asyncListProducts();
+
+
+
+
+
+        }
+
+
+      }
+    );
+
+
+
+
+
 
 
 

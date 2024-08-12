@@ -111,8 +111,46 @@ export class ProductListComponent {
 
 
   }
+  clickedNumber:number=-1;
+  helper(){
+    this.clickedNumber++;
+    var helpCloud:HTMLDivElement|null=this.document.querySelector('.help-cloud');
+    var pPanelMenu:HTMLDivElement|null=this.document.querySelector('.p-panelmenu');
+    console.log(this.clickedNumber);
+    if(pPanelMenu && helpCloud){
+      helpCloud.style.cssText="display:block; position:absolute;  width:80px;  padding:1.1rem; text-align:center; color:black; overflow:visible; color:#00b4d2;";
+      var pChildren=pPanelMenu.children;
+      if(this.clickedNumber<pChildren.length-1){
+        helpCloud.style.cssText+=`top:${pChildren[this.clickedNumber].getBoundingClientRect().top}px; right:${pChildren[this.clickedNumber].getBoundingClientRect().left+100}px;`;
+      console.log(helpCloud)
+
+      }
+      else{
+        helpCloud.style.cssText+="display:none;";
+        this.clickedNumber=-1;
+
+      }
 
 
+      // switch(this.clickedNumber){
+      //   case 0:
+      //     helpCloud.style.cssText+=`top:${pChildren[0].getBoundingClientRect().top}px; right:${pChildren[0].getBoundingClientRect().left+120}px;`;
+      //     console.log(helpCloud)
+      //     break;
+      //   case 1:
+      //       helpCloud.style.cssText+=`top:${pChildren[1].getBoundingClientRect().top}px; right:${pChildren[1].getBoundingClientRect().left+120}px;`;
+      //       console.log(helpCloud)
+      //       break;
+      //   default:
+      //     helpCloud.style.cssText+=`display:none`;
+      //     console.log(helpCloud)
+      // }
+
+
+    }
+
+
+  }
 
 
 
