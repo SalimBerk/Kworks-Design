@@ -246,12 +246,13 @@ export class ProductMainComponent implements OnInit {
         amountprice: 2400.0,
       },
     ];
-    this.newMenulist = pagetrigger.getProducts();
+
+    this.asyncListProducts();
 
     this.searchSubject
       .pipe(
-        debounceTime(1000), // 1000ms bekleyip ondan sonra isteği gönderir
-        distinctUntilChanged(), // Aynı sorgular için tekrar istek göndermez
+        debounceTime(1000),
+        distinctUntilChanged(),
         switchMap((searchTerm) =>
           this.pagetrigger.getProductsBySearch(searchTerm)
         )
@@ -292,7 +293,6 @@ export class ProductMainComponent implements OnInit {
     this.pagetrigger.isLoading$.subscribe((loading) => {
       this.loading = loading;
       if (loading != true) {
-        this.asyncListProducts();
       }
     });
 
