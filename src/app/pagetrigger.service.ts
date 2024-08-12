@@ -52,6 +52,7 @@ export class PagetriggerService {
     return variants;
   }
   async getProductsBySearch(event: string): Promise<any> {
+    this.setLoading(true);
     const response = await axios.get(
       'https://api.qapera.com/api/cook_books?pagination=true&itemsPerPage=20&page=1',
       { headers }
@@ -63,6 +64,9 @@ export class PagetriggerService {
       console.log('Filtering:', value.name.toLowerCase(), event?.toLowerCase());
       return value.name.toLowerCase().includes(event?.toLowerCase());
     });
+    if (filteredVariants != null) {
+      this.setLoading(false);
+    }
     return filteredVariants;
   }
 
