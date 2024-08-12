@@ -80,7 +80,7 @@ export class ProductMainComponent  implements OnInit{
   newVariants:any[]=[];
 
   searchTerms:string='';
-  filteredProducts: any[] = [];
+
 
 
   @ViewChild('inputElement') inputElement!: ElementRef;
@@ -96,8 +96,7 @@ export class ProductMainComponent  implements OnInit{
 
   }
 
-  onInputChange(event:any) {
-    console.log(event);
+  async onInputChange(event:any) {
 
   }
 

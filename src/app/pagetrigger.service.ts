@@ -51,15 +51,17 @@ export class PagetriggerService {
     return variants;
    }
    async getProductsBySearch(event:string):Promise<any>{
+
     const response=await axios.get('https://api.qapera.com/api/cook_books?pagination=true&itemsPerPage=20&page=1', { headers});
 
     searchVariants=response.data['hydra:member'];
 
 
-    let filteredVariants=searchVariants.filter((value:any)=>{
+    let  filteredVariants=searchVariants.filter((value:any)=>{
       return value.name.toLowerCase().includes(event?.toLowerCase());
     })
-    console.log(filteredVariants);
+    return filteredVariants;
+
 
 
    }
