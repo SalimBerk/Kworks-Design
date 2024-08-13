@@ -151,34 +151,41 @@
   </div>
 </div>
 <ng-template #productList>
-  <div class="grid grid-cols-1 p-16 lg:grid-cols-4 md:p-0 mt-14 gap-4">
-    @for (menu of newMenulist; track $index) {
-    <p-card
-      header="{{ menu.name }}"
-      subheader="50TL"
-      [style]="{ width: '250px' }"
-    >
-      <ng-template pTemplate="header" [style]="{ width: '400px' }">
-        <img
-          alt="Card"
-          src="{{
-            menu.image != null
-              ? menu.image
-              : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
-          }}"
-          class="hover:cursor-pointer"
-          (click)="detailPanel(menu.id)"
-        />
-        <span
-          style="border: 3px solid #00b4d2; font-size: 10px"
-          class="bg-white text-black absolute bottom-3 left-5 p-2 rounded-md"
-          >{{ menu.category?.name }}</span
-        >
-      </ng-template>
-      <div class="card-content flex justify-center items-center"></div>
-    </p-card>
-    }
+  <div *ngIf="newMenulist.length > 0; else notFound">
+    <div class="grid grid-cols-1 p-16 lg:grid-cols-4 md:p-0 mt-14 gap-4">
+      @for (menu of newMenulist; track $index) {
+      <p-card
+        header="{{ menu.name }}"
+        subheader="50TL"
+        [style]="{ width: '250px' }"
+      >
+        <ng-template pTemplate="header" [style]="{ width: '400px' }">
+          <img
+            alt="Card"
+            src="{{
+              menu.image != null
+                ? menu.image
+                : 'https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg'
+            }}"
+            class="hover:cursor-pointer"
+            (click)="detailPanel(menu.id)"
+          />
+          <span
+            style="border: 3px solid #00b4d2; font-size: 10px"
+            class="bg-white text-black absolute bottom-3 left-5 p-2 rounded-md"
+            >{{ menu.category?.name }}</span
+          >
+        </ng-template>
+        <div class="card-content flex justify-center items-center"></div>
+      </p-card>
+      }
+    </div>
   </div>
+  <ng-template #notFound>
+    <p class="flex justify-center items-center p-5 font-bold text-lg">
+      Veri Bulunamadı.
+    </p>
+  </ng-template>
 </ng-template>
 
 <p-dialog
