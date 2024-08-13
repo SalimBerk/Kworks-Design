@@ -39,35 +39,13 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { PagetriggerService } from '../pagetrigger.service';
-
+import { PagetriggerService } from '../../pagetrigger.service';
 import {
-  animate,
-  state,
-  style,
-  transition,
-  trigger,
-} from '@angular/animations';
-import { Transform } from 'stream';
-
-interface StockInfo {
-  stockId?: Number;
-  stock?: number;
-  unit?: number;
-  price?: number;
-  prescription_amount?: number;
-  cost: number;
-}
-
-interface gramList {
-  name: string;
-}
-interface grossList {
-  grossprice: number;
-}
-interface amountList {
-  amountprice: number;
-}
+  StockInfo,
+  gramList,
+  amountList,
+  grossList,
+} from '../model/product-model';
 
 @Component({
   selector: 'app-product-main',

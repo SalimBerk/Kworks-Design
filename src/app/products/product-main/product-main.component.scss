@@ -277,6 +277,19 @@
   stroke: #00b4d2;
   animation: p-progress-spinner-color 6s ease-in-out infinite;
 }
+.menu-area {
+  border: 1px solid black;
+  width: 500px;
+  padding: 1rem;
+  border-top: 0px;
+  margin-right: 100px;
+  border-right: 0px;
+  border-left: 0px;
+  border-bottom: 4px solid #00b4d2;
+  @media (max-width: 768px) {
+    width: 300px;
+  }
+}
 
 @keyframes p-progress-spinner-color {
   100%,
