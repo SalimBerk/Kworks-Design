@@ -15,6 +15,7 @@ const headers = {
 let menuList: any[] = [];
 let variants: any[] = [];
 let searchVariants: any[] = [];
+let items: any[] = [];
 
 @Injectable({
   providedIn: 'root',

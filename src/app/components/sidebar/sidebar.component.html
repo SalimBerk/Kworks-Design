@@ -8,6 +8,7 @@
     />
   </ng-template>
   <div class="flex flex-col">
+    @if (productList) {
     <button
       pButton
       type="button"
@@ -26,56 +27,68 @@
           : 'pi pi-angle-double-left'
       }}"
     ></button>
+    } @else {
+    <p-skeleton shape="circle" size="2rem" styleClass="mr-2 mb-5" />
+    }
 
-    <p-panelMenu [model]="items">
-      <ng-template pTemplate="item" let-item>
-        <ng-container NgIf="item.route; else urlRef">
-          <a [routerLink]="item.route" class="cursor-pointer text-color px-2">
-            <span
-              (mouseover)="sidebarHoverState()"
-              [class]="item.icon"
-              class="text-md"
-            ></span>
+    <div *ngIf="productList; else notLoading">
+      <p-panelMenu [model]="items">
+        <ng-template pTemplate="item" let-item>
+          <ng-container NgIf="item.route; else urlRef">
+            <a [routerLink]="item.route" class="cursor-pointer text-color px-2">
+              <span
+                (mouseover)="sidebarHoverState()"
+                [class]="item.icon"
+                class="text-md"
+              ></span>
+              <span
+                [style.display]="pagetrigger.clicked ? 'none' : 'inline'"
+                class="ml-2 text-color text-sm"
+                >{{ item.label }}</span
+              >
+            </a>
             <span
               [style.display]="pagetrigger.clicked ? 'none' : 'inline'"
-              class="ml-2 text-color text-sm"
-              >{{ item.label }}</span
-            >
-          </a>
-          <span
-            [style.display]="pagetrigger.clicked ? 'none' : 'inline'"
-            style="font-size: xx-large"
-            [class]="item.chev"
-          ></span>
-        </ng-container>
-        <ng-template #urlRef>
-          <a
-            NgIf="item.url; else noLink"
-            [href]="item.url"
-            class="flex align-items-center cursor-pointer text-color px-3 py-2"
-          >
-            <span [class]="item.icon"></span>
-            <span class="ml-2">{{ item.label }}</span>
-          </a>
-          <ng-template #noLink>
-            <span
+              style="font-size: xx-large"
+              [class]="item.chev"
+            ></span>
+          </ng-container>
+          <ng-template #urlRef>
+            <a
+              NgIf="item.url; else noLink"
+              [href]="item.url"
               class="flex align-items-center cursor-pointer text-color px-3 py-2"
             >
               <span [class]="item.icon"></span>
               <span class="ml-2">{{ item.label }}</span>
-              <i
-                NgIf="item.items"
-                class="pi pi-angle-down text-primary ml-auto"
-              ></i>
-            </span>
+            </a>
+            <ng-template #noLink>
+              <span
+                class="flex align-items-center cursor-pointer text-color px-3 py-2"
+              >
+                <span [class]="item.icon"></span>
+                <span class="ml-2">{{ item.label }}</span>
+                <i
+                  NgIf="item.items"
+                  class="pi pi-angle-down text-primary ml-auto"
+                ></i>
+              </span>
+            </ng-template>
           </ng-template>
         </ng-template>
-      </ng-template>
-    </p-panelMenu>
-    <hr />
+      </p-panelMenu>
+    </div>
+    <ng-template #notLoading>
+      @for (item of items; track $index) {
+      <p-skeleton width="10rem" height="2rem" styleClass="mb-5" />
+      }
+    </ng-template>
   </div>
 
+  <hr />
+
   <ng-template pTemplate="footer">
+    @if(productList){
     <img
       (click)="helper()"
       src="assets/img/sss.jpeg"
@@ -96,7 +109,19 @@
       <span class="profile-name text-sm">mahmut</span>
       <span class="profile-desc text-sm">Chef</span>
     </div>
+
+    } @else {
+
+    <div class="flex mb-3">
+      <p-skeleton shape="circle" size="5rem" styleClass="mr-2" />
+      <div class="p-1">
+        <p-skeleton width="7rem" styleClass="mb-2" />
+        <p-skeleton width="5rem" styleClass="mb-2" />
+      </div>
+    </div>
+    }
   </ng-template>
+
   <i class="help-cloud pi pi-question" style="display: none"> </i>
 </p-sidebar>
 <!-- test -->

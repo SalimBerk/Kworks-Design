@@ -7,6 +7,8 @@ import { FormsModule } from '@angular/forms';
 import { ProductMainComponent } from './components/products/product-main/product-main.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { PagetriggerService } from './services/pagetrigger.service';
+import { CommonModule } from '@angular/common';
+import { DatasharingService } from './services/datasharing.service';
 
 @Component({
   selector: 'app-root',
@@ -15,15 +17,18 @@ import { PagetriggerService } from './services/pagetrigger.service';
   styleUrl: './app.component.scss',
   imports: [
     RouterOutlet,
+    SidebarComponent,
     ButtonModule,
     SidebarModule,
-    SidebarComponent,
+    CommonModule,
+
     ProductMainComponent,
     FormsModule,
   ],
 })
 export class AppComponent {
   title = 'AngularTutorialApp';
+  isLoaded = false;
 
   constructor(public pageTrigger: PagetriggerService) {}
 }

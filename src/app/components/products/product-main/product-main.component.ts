@@ -49,6 +49,7 @@ import {
   grossList,
 } from '../../../models/product-model';
 import { PagetriggerService } from '../../../services/pagetrigger.service';
+import { DatasharingService } from '../../../services/datasharing.service';
 
 @Component({
   selector: 'app-product-main',
@@ -169,7 +170,7 @@ export class ProductMainComponent implements OnInit {
     public pagetrigger: PagetriggerService,
     private fb: FormBuilder,
     private messageService: MessageService,
-    private cdr: ChangeDetectorRef
+    private dataSharingService: DatasharingService
   ) {
     this.myForm = this.fb.group({
       name: [
@@ -269,6 +270,7 @@ export class ProductMainComponent implements OnInit {
 
   async asyncListProducts(): Promise<void> {
     this.newMenulist = await this.pagetrigger.getProducts();
+    this.dataSharingService.changeData(this.newMenulist);
   }
 
   async ngOnInit(): Promise<void> {
