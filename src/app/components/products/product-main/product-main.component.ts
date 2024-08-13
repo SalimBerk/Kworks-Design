@@ -39,13 +39,13 @@ import { TagModule } from 'primeng/tag';
 import { ToastModule } from 'primeng/toast';
 import { Subject } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { PagetriggerService } from '../../pagetrigger.service';
 import {
   StockInfo,
-  gramList,
   amountList,
+  gramList,
   grossList,
-} from '../model/product-model';
+} from '../../../models/product-model';
+import { PagetriggerService } from '../../../services/pagetrigger.service';
 
 @Component({
   selector: 'app-product-main',

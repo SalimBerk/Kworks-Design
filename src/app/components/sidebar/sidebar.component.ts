@@ -1,3 +1,5 @@
+import { animate, style, transition, trigger } from '@angular/animations';
+import { DOCUMENT } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -10,21 +12,18 @@ import {
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
-import { ButtonModule } from 'primeng/button';
-import { SidebarModule } from 'primeng/sidebar';
-import { PanelMenuModule } from 'primeng/panelmenu';
-import { MenuItem } from 'primeng/api';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { PagetriggerService } from '../../pagetrigger.service';
-import { trigger, transition, style, animate } from '@angular/animations';
-import { InputTextModule } from 'primeng/inputtext';
+import { MenuItem } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
 import { DropdownModule } from 'primeng/dropdown';
-import { InputTextareaModule } from 'primeng/inputtextarea';
 import { ImageModule } from 'primeng/image';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { PanelMenuModule } from 'primeng/panelmenu';
+import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
-import { FormsModule } from '@angular/forms';
-import { ReactiveFormsModule } from '@angular/forms';
-import { DOCUMENT } from '@angular/common';
+import { PagetriggerService } from '../../services/pagetrigger.service';
 
 @Component({
   selector: 'app-sidebar',
