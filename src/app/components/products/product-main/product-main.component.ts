@@ -27,7 +27,10 @@ import { ButtonModule } from 'primeng/button';
 import { CardModule } from 'primeng/card';
 import { DialogModule } from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import { IconFieldModule } from 'primeng/iconfield';
 import { ImageModule } from 'primeng/image';
+import { InputIconModule } from 'primeng/inputicon';
+import { InputTextModule } from 'primeng/inputtext';
 import { ListboxModule } from 'primeng/listbox';
 import { MessagesModule } from 'primeng/messages';
 import { PanelModule } from 'primeng/panel';
@@ -71,12 +74,16 @@ import { PagetriggerService } from '../../../services/pagetrigger.service';
     ToastModule,
     AutoCompleteModule,
     ProgressSpinnerModule,
+    IconFieldModule,
+    InputIconModule,
+    InputTextModule,
   ],
   templateUrl: './product-main.component.html',
   styleUrl: './product-main.component.scss',
 })
 export class ProductMainComponent implements OnInit {
   loading: boolean;
+  searchLoading: boolean = false; // State for loading indicator
 
   grams!: gramList[];
   gross!: grossList[];
@@ -227,12 +234,14 @@ export class ProductMainComponent implements OnInit {
       .pipe(
         debounceTime(1000),
         distinctUntilChanged(),
-        switchMap((searchTerm) =>
-          this.pagetrigger.getProductsBySearch(searchTerm)
-        )
+        switchMap((searchTerm) => {
+          this.searchLoading = true;
+          return this.pagetrigger.getProductsBySearch(searchTerm);
+        })
       )
       .subscribe((filteredVariants) => {
         this.newMenulist = filteredVariants;
+        this.searchLoading = false;
       });
   }
 

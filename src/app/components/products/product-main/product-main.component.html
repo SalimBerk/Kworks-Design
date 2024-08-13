@@ -19,13 +19,20 @@
     >
       <i class="pi pi-bars small-icon"></i>
     </button>
-    <input
-      type="text"
-      [(ngModel)]="searchTerms"
-      (ngModelChange)="onInputChange($event)"
-      class="p-1 border border-1"
-      placeholder="Genel Arama"
-    />
+    <p-iconField iconPosition="right">
+      <p-inputIcon
+        *ngIf="searchLoading"
+        class="searching-icon"
+        styleClass="pi pi-spinner pi-spin"
+      />
+      <input
+        type="text"
+        [(ngModel)]="searchTerms"
+        (ngModelChange)="onInputChange($event)"
+        class="p-1 border border-1"
+        placeholder="Genel Arama"
+      />
+    </p-iconField>
     <p-dropdown
       [options]="countries"
       class="small-dropdown"
