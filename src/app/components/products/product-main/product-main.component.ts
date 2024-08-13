@@ -97,6 +97,7 @@ export class ProductMainComponent implements OnInit {
   originalValue!: number;
   messages!: Message[];
   newVariants: any[] = [];
+  tryMessage: Message[];
 
   searchTerms: string = '';
   filteredProducts: any[] = [];
@@ -268,6 +269,14 @@ export class ProductMainComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
+    this.tryMessage = [
+      {
+        severity: 'info',
+        detail:
+          'Yemek kitabı, listelenen malzemeler veya pişirme talimatları ile Menü Öğeleri için tarifleri görüntüler.',
+      },
+    ];
+
     this.pagetrigger.isLoading$.subscribe((loading) => {
       this.loading = loading;
       if (loading != true) {

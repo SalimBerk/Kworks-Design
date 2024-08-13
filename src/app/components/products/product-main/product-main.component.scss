@@ -19,19 +19,18 @@
 ::ng-deep .p-card-header {
   height: 100%;
   width: 100%;
-
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   overflow: hidden;
   position: relative;
   box-shadow: rgba(0, 0, 0, 151.24) 0px 3px 9px;
 }
 ::ng-deep .p-card-header > img {
   height: 185px;
-  width: 250px;
-
-  border-top-right-radius: 30px;
-  border-top-left-radius: 30px;
+  width: 100%;
+  object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
   transform: scale(1);
   transition: all ease-in-out 0.5s;
 }
@@ -280,6 +279,24 @@
   stroke: #00b4d2;
   animation: p-progress-spinner-color 6s ease-in-out infinite;
 }
+
+::ng-deep .p-message .p-message-wrapper {
+  padding: 1rem 1.75rem;
+}
+
+::ng-deep .p-message.p-message-info {
+  background: #607d8b0d;
+  border: solid #8c8f93;
+  border-width: 0 0 0 6px;
+  color: #05070a;
+}
+
+::ng-deep .p-message.p-message-info .p-message-icon {
+  color: #000;
+  display: flex;
+  align-items: center;
+}
+
 .menu-area {
   border: 1px solid black;
   width: 500px;
