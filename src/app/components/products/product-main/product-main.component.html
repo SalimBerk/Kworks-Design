@@ -77,8 +77,8 @@
       </ng-template>
     </p-dropdown>
     <button
-      class="w-32 h-8 p-1 text-center whitespace-nowrap text-white text-md self-center"
-      style="background-color: #00b4d2; width: 100%"
+      class="w-32 h-8 p-1 text-center whitespace-nowrap text-white text-md self-center flex align-items-center"
+      style="background-color: #00b4d2; width: 100%; padding: 17px !important"
     >
       Ara
     </button>
@@ -95,13 +95,13 @@
         class="w-10 h-8 whitespace-nowrap text-white text-md"
         style="background-color: #00b4d2"
       >
-        <i class="pi pi-bell"></i>
+        <i class="pi pi-bell mr-0 mt-1"></i>
       </button>
       <button
         class="w-10 h-8 whitespace-nowrap text-white text-md"
         style="background-color: #00b4d2"
       >
-        <i class="pi pi-question"></i>
+        <i class="pi pi-question mr-0 mt-1"></i>
       </button>
     </div>
 
@@ -125,21 +125,21 @@
         class="w-10 h-8 sm:mt-4 whitespace-nowrap text-white text-md mt-0"
         style="background-color: #00b4d2"
       >
-        <i class="pi pi-bell"></i>
+        <i class="pi pi-bell mr-0 mt-1"></i>
       </button>
       <button
         class="w-10 h-8 sm:mt-4 whitespace-nowrap text-white text-md mt-0"
         style="background-color: #00b4d2"
       >
-        <i class="pi pi-question"></i>
+        <i class="pi pi-question mr-0 mt-1"></i>
       </button>
     </div>
   </div>
 </div>
 
-<div class="card w-100 mt-2">
+<div class="card page-info w-100 mt-2">
   <p-messages
-    [(value)]="tryMessage"
+    [(value)]="messages"
     [enableService]="false"
     [closable]="false"
     class="w-100"

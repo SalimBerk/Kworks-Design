@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { DOCUMENT } from '@angular/common';
+import { DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -9,6 +9,7 @@ import {
   Input,
   OnChanges,
   Output,
+  PLATFORM_ID,
   SimpleChanges,
   ViewChild,
 } from '@angular/core';
@@ -139,7 +140,8 @@ export class SidebarComponent {
   constructor(
     private router: Router,
     public pagetrigger: PagetriggerService,
-    @Inject(DOCUMENT) private document: Document
+    @Inject(DOCUMENT) private document: Document,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {
     this.items = [
       {
@@ -183,18 +185,21 @@ export class SidebarComponent {
   }
 
   ngOnInit() {
-    let menuList: NodeListOf<HTMLElement> | null = document.querySelectorAll(
-      '.p-panelmenu-header-content'
-    );
-    if (menuList) {
-      menuList.forEach((menu: HTMLElement) => {
-        menu.addEventListener('click', () => {
-          document.querySelector('.active')?.classList.remove('active');
-          document.querySelector('.text-blue')?.classList.remove('text-blue');
-          menu.classList.add('active');
-          menu.children[0].classList.add('text-blue');
+    if (isPlatformBrowser(this.platformId)) {
+      let menuList: NodeListOf<HTMLElement> | null =
+        this.document.querySelectorAll('.p-panelmenu-header-content');
+      if (menuList) {
+        menuList.forEach((menu: HTMLElement) => {
+          menu.addEventListener('click', () => {
+            this.document.querySelector('.active')?.classList.remove('active');
+            this.document
+              .querySelector('.text-blue')
+              ?.classList.remove('text-blue');
+            menu.classList.add('active');
+            menu.children[0].classList.add('text-blue');
+          });
         });
-      });
+      }
     }
   }
 }

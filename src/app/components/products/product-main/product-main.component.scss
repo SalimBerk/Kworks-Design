@@ -43,7 +43,7 @@
 }
 
 ::ng-deep .p-card-header > img:hover {
-  object-fit: contain;
+  object-fit: cover;
   transform: scale(1.4);
 }
 ::ng-deep .p-dialog-content .p-card-body {
@@ -280,18 +280,18 @@
   animation: p-progress-spinner-color 6s ease-in-out infinite;
 }
 
-::ng-deep .p-message .p-message-wrapper {
+::ng-deep .page-info .p-message .p-message-wrapper {
   padding: 1rem 1.75rem;
 }
 
-::ng-deep .p-message.p-message-info {
+::ng-deep .page-info .p-message.p-message-info {
   background: #607d8b0d;
   border: solid #8c8f93;
   border-width: 0 0 0 6px;
   color: #05070a;
 }
 
-::ng-deep .p-message.p-message-info .p-message-icon {
+::ng-deep .page-info .p-message.p-message-info .p-message-icon {
   color: #000;
   display: flex;
   align-items: center;

@@ -97,7 +97,6 @@ export class ProductMainComponent implements OnInit {
   originalValue!: number;
   messages!: Message[];
   newVariants: any[] = [];
-  tryMessage: Message[];
 
   searchTerms: string = '';
   filteredProducts: any[] = [];
@@ -113,19 +112,15 @@ export class ProductMainComponent implements OnInit {
   }
 
   onInputChange(event: any) {
-    // this.pagetrigger.getProductsBySearch(event);
     this.searchSubject.next(event);
   }
 
   onBlur(event: any) {
-    console.log(event);
-
     const inputElement = event.target as HTMLInputElement;
 
     let id: number = parseInt(inputElement.id);
     let currentStock = this.stocks[id];
     currentStock.prescription_amount = parseFloat(inputElement.value);
-    console.log(event);
   }
 
   idCounter: number = 0;
@@ -257,7 +252,6 @@ export class ProductMainComponent implements OnInit {
   // }
   searchVariant = async (event: any) => {
     this.newVariants = await this.pagetrigger.getProductsByFilter(event);
-    console.log('variants', this.newVariants);
   };
 
   // onVariantSelect(event:Event, i:number): void {
@@ -269,7 +263,7 @@ export class ProductMainComponent implements OnInit {
   }
 
   async ngOnInit(): Promise<void> {
-    this.tryMessage = [
+    this.messages = [
       {
         severity: 'info',
         detail:
