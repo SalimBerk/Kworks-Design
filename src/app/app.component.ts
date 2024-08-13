@@ -1,12 +1,12 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 
-import { ProductMainComponent } from './products/product-main/product-main.component';
-import { PagetriggerService } from './pagetrigger.service';
 import { FormsModule } from '@angular/forms';
-import { SidebarComponent } from './products/sidebar/sidebar.component';
+import { ProductMainComponent } from './components/products/product-main/product-main.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { PagetriggerService } from './services/pagetrigger.service';
 
 @Component({
   selector: 'app-root',
