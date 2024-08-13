@@ -150,10 +150,7 @@
   border-radius: 20px;
   width: 150px;
 }
-::ng-deep
-  .p-stepper
-  .p-stepper-header:has(~ .p-highlight)
-  .p-stepper-separator {
+::ng-deep .p-stepper .p-stepper-header:has(~ .p-highlight) .p-stepper-separator {
   background-color: gray;
 }
 
@@ -211,7 +208,7 @@
 }
 
 ::ng-deep .p-inputwrapper {
-  width: 70%;
+  width: 100%;
   margin-right: 120px;
 }
 
@@ -231,7 +228,7 @@
 }
 
 ::ng-deep .small-dropdown {
-  width: 150px;
+  width: 170px;
 }
 ::ng-deep .p-dropdown {
   border-bottom: 5px solid #00b4d2;
