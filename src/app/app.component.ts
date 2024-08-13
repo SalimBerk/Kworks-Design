@@ -3,10 +3,10 @@ import { RouterOutlet } from '@angular/router';
 import { ButtonModule } from 'primeng/button';
 import { SidebarModule } from 'primeng/sidebar';
 
-import { ProductListComponent } from './products/product-list/product-list.component';
 import { ProductMainComponent } from './products/product-main/product-main.component';
 import { PagetriggerService } from './pagetrigger.service';
 import { FormsModule } from '@angular/forms';
+import { SidebarComponent } from './products/sidebar/sidebar.component';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +17,7 @@ import { FormsModule } from '@angular/forms';
     RouterOutlet,
     ButtonModule,
     SidebarModule,
-    ProductListComponent,
+    SidebarComponent,
     ProductMainComponent,
     FormsModule,
   ],

@@ -27,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { DOCUMENT } from '@angular/common';
 
 @Component({
-  selector: 'app-product-list',
+  selector: 'app-sidebar',
   standalone: true,
   imports: [
     ButtonModule,
@@ -41,10 +41,10 @@ import { DOCUMENT } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './product-list.component.html',
-  styleUrl: './product-list.component.scss',
+  templateUrl: './sidebar.component.html',
+  styleUrl: './sidebar.component.scss',
 })
-export class ProductListComponent {
+export class SidebarComponent {
   countries: any[] | undefined;
 
   selectedCountry: string | undefined;
