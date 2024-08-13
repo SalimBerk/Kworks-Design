@@ -52,9 +52,8 @@
 
 ::ng-deep .p-card-body {
   background-color: #00b4d2;
-
   color: white;
-  border-top: 10px solid white;
+  // border-top: 10px solid white;
 }
 ::ng-deep .p-card-title {
   white-space: "no-wrap";
@@ -73,11 +72,11 @@
 
 ::ng-deep .p-panel {
   margin-bottom: 2rem;
-  width: 288px;
+  width: 100%;
   display: block;
   text-align: center;
   align-self: center;
-  margin-left: 10%;
+  // margin-left: 10%;
 }
 ::ng-deep .p-panel-header {
   background-color: white;
@@ -121,9 +120,8 @@
 
 ::ng-deep .p-image > img {
   align-self: center;
-  margin-bottom: 30px;
-  max-width: 250px;
-  border-radius: 10%;
+  margin-bottom: 10px;
+  max-width: 400px;
   @media only screen and (min-width: 300px) and (max-width: 900px) {
     max-width: 250px;
   }
