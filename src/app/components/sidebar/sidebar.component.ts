@@ -1,5 +1,5 @@
 import { animate, style, transition, trigger } from '@angular/animations';
-import { DOCUMENT, isPlatformBrowser } from '@angular/common';
+import { CommonModule, DOCUMENT, isPlatformBrowser } from '@angular/common';
 import {
   Component,
   ElementRef,
@@ -25,12 +25,15 @@ import { PanelMenuModule } from 'primeng/panelmenu';
 import { SidebarModule } from 'primeng/sidebar';
 import { TableModule } from 'primeng/table';
 import { PagetriggerService } from '../../services/pagetrigger.service';
+import { DatasharingService } from '../../services/datasharing.service';
+import { SkeletonModule } from 'primeng/skeleton';
 
 @Component({
   selector: 'app-sidebar',
   standalone: true,
   imports: [
     ButtonModule,
+    CommonModule,
     SidebarModule,
     PanelMenuModule,
     InputTextModule,
@@ -40,12 +43,14 @@ import { PagetriggerService } from '../../services/pagetrigger.service';
     TableModule,
     FormsModule,
     ReactiveFormsModule,
+    SkeletonModule,
   ],
   templateUrl: './sidebar.component.html',
   styleUrl: './sidebar.component.scss',
 })
 export class SidebarComponent {
   countries: any[] | undefined;
+  productList: any[];
 
   selectedCountry: string | undefined;
 
@@ -141,8 +146,13 @@ export class SidebarComponent {
     private router: Router,
     public pagetrigger: PagetriggerService,
     @Inject(DOCUMENT) private document: Document,
-    @Inject(PLATFORM_ID) private platformId: Object
+    @Inject(PLATFORM_ID) private platformId: Object,
+    private dataSharingService: DatasharingService
   ) {
+    dataSharingService.currentData.subscribe((value: any) => {
+      this.productList = value;
+    });
+
     this.items = [
       {
         label: 'DASHBOARD',

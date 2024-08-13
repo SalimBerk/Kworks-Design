@@ -9,4 +9,5 @@ export const routes: Routes = [
     path: '',
     component: ProductMainComponent,
   },
+  { path: 'productmain', component: ProductMainComponent },
 ];
