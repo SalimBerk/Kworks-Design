@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+::ng-deep .p-card-header > img {
+  height: 185px;
+  width: 100%;
+  object-fit: cover;
+  border-top-right-radius: 8px;
+  border-top-left-radius: 8px;
+  transform: scale(1);
+  transition: all ease-in-out 0.5s;
+}

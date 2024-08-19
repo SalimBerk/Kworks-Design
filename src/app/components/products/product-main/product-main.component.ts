@@ -50,6 +50,7 @@ import {
 } from '../../../models/product-model';
 import { PagetriggerService } from '../../../services/pagetrigger.service';
 import { DatasharingService } from '../../../services/datasharing.service';
+import { ProductListComponent } from '../product-list/product-list.component';
 
 @Component({
   selector: 'app-product-main',
@@ -78,6 +79,7 @@ import { DatasharingService } from '../../../services/datasharing.service';
     IconFieldModule,
     InputIconModule,
     InputTextModule,
+    ProductListComponent,
   ],
   templateUrl: './product-main.component.html',
   styleUrl: './product-main.component.scss',
